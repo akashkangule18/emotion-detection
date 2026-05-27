@@ -30,7 +30,7 @@ stages:
     - src/model/model_building.py
     params:
     - model_building.n_estimators
-    - model_building.max_samples
+    - model_building.max_depth
     outs:
     - models/model.pkl
   model_evalution:

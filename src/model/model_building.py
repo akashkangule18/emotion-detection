@@ -29,11 +29,12 @@ def data(train_path):
 
 
 
-def model(X_train, y_train,n_estimators, max_samples):
+def model(X_train, y_train,n_estimators, max_depth):
 
     # building model
-    from sklearn.ensemble import RandomForestClassifier
-    clf = RandomForestClassifier(n_estimators= n_estimators, max_samples= max_samples)
+    import xgboost as xgb
+    from xgboost import XGBClassifier
+    clf = XGBClassifier(n_estimators= n_estimators, max_depth= max_depth)
     clf = clf.fit(X_train,y_train)
     return clf
 
@@ -44,7 +45,7 @@ def model(X_train, y_train,n_estimators, max_samples):
 def main():
     params = load_file('params.yaml')
     X_train, y_train = data('./data/processed/train.csv')
-    clf = model(X_train, y_train, params['n_estimators'],params['max_samples'])
+    clf = model(X_train, y_train, params['n_estimators'],params['max_depth'])
     pickle.dump(clf,open('models/model.pkl','wb'))
 
 if __name__ == '__main__':
