@@ -37,7 +37,7 @@ def metrics(accuracy, recall, precision, auc):
     }
 
     # getting json file
-    with open('metrics.json','w') as file:
+    with open('reports/metrics.json','w') as file:
         json.dump(metrics_dict, file, indent=4)
 
 def main():
